@@ -1,18 +1,19 @@
 #!/bin/bash
 
-# BASED ON - https://gist.github.com/2206527
+# Based on https://gist.github.com/2206527
 
 # Basic variables
 mysqlpass="ROOTPASSWORD"
 bucket="s3://bucketname"
 
 # Timestamp (sortable AND readable)
-stamp=`date +"%s - %A %d %B %Y %H-%M-%S"`
-datestamp=`date +"%Y-%m-%d"`
-timestamp=`date +"%H-%M-%S"`
+stamp=`date +"%s - %A %d %B %Y %H%M"`
 
 # List all the databases
 databases=`mysql -u root -p$mysqlpass -e "SHOW DATABASES;" | tr -d "| " | grep -v "\(Database\|information_schema\|mysql\)"`
+
+# Feedback
+echo -e "Dumping to \e[1;32m$bucket/$stamp/\e[00m"
 
 # Loop the databases
 for db in $databases; do
@@ -22,19 +23,27 @@ for db in $databases; do
   tmpfile="/tmp/$filename"
   object="$bucket/$stamp/$filename"
 
+  # Feedback
+  echo -e "\e[1;34m$db\e[00m"
+
   # Dump and zip
-  echo -e "Dumping \e[0;34m$db\e[0m to \e[0;35m$tmpfile\e[0m..."
+  echo -e "  creating \e[0;35m$tmpfile\e[00m"
   mysqldump -u root -p$mysqlpass --force --opt --databases "$db" | gzip -c > "$tmpfile"
 
   # Upload
-  echo -e "Moving \e[0;34m$tmpfile\e[0m to \e[0;35m$object\e[0m..."
+  echo -e "  uploading..."
   s3cmd put "$tmpfile" "$object"
 
   # Delete
-  echo -e "Removing \e[1;31m$tmpfile\e[0m"
   rm -f "$tmpfile"
 
 done;
 
 # Jobs a goodun
-echo -e "\e[1;32mAll done :-)\e[0m"
+echo -e " "
+echo -e " .  ____  .    ______________________________"
+echo -e " |/      \|   |                              |"
+echo -e "[| \e[1;31m♥    ♥\e[00m |]  | S3 MySQL Backup Script v.0.1 |"
+echo -e " |___==___|  /                © oodavid 2012 |"
+echo -e "              |______________________________|"
+echo -e " "

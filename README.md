@@ -4,7 +4,7 @@ This is a simple way to backup your MySQL tables to Amazon S3 for a nightly back
 
 ***Sister Document - [Restore MySQL from Amazon S3](https://gist.github.com/2208520) - read that next***
 
-## Install s3cmd
+## 1 - Install s3cmd
 
 *this is for Centos 5.6, see http://s3tools.org/repositories for other systems like ubuntu etc*
 
@@ -16,7 +16,7 @@ This is a simple way to backup your MySQL tables to Amazon S3 for a nightly back
     s3cmd --configure
         # You’ll need to enter your AWS access key and secret key here, everything is optional and can be ignored :-)
 
-## Add your script
+## 2 - Add your script
 
 Upload a copy of [s3mysqlbackup.sh](#file_s3mysqlbackup.sh) (it will need some tweaks for your setup), make it executable and test it
 
@@ -25,7 +25,7 @@ Upload a copy of [s3mysqlbackup.sh](#file_s3mysqlbackup.sh) (it will need some t
     # Run the script to make sure it's all tickety boo
     ./s3mysqlbackup.sh
 
-## Run it every night with CRON
+## 3 - Run it every night with CRON
 
 Assuming the backup script is stored in /var/www/s3mysqlbackup.sh we need to add a crontask to run it automatically:
 
@@ -35,7 +35,7 @@ Assuming the backup script is stored in /var/www/s3mysqlbackup.sh we need to add
         # Run the database backup script at 3am
         0 3 * * * bash /var/www/s3mysqlbackup.sh >/dev/null 2>&1
 
-## Don't expose the script!
+## 4 - Don't expose the script!
 
 If for some reason you put this script in a public folder (not sure why you would do this), you should add the following to your .htaccess or httpd.conf file to prevent public access to the files:
 

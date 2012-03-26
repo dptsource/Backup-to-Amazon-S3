@@ -2,6 +2,8 @@
 
 This is a simple way to backup your MySQL tables to Amazon S3 for a nightly backup - this is all to be done on your server :-)
 
+***Sister Document - [Restore MySQL from Amazon S3](https://gist.github.com/2208520)***
+
 ## Install s3cmd
 
 *this is for Centos 5.6, see http://s3tools.org/repositories for other systems like ubuntu etc*
@@ -42,8 +44,3 @@ If for some reason you put this script in a public folder (not sure why you woul
         Order allow,deny
         Deny from all
     </Files>
-
-## How to restore...?
-
-It would be silly to do backups without planning the restore procedure!
-How to... [Restore MySQL from Amazon S3](https://gist.github.com/2208520)

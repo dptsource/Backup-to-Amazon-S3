@@ -2,7 +2,7 @@
 
 This is a simple way to backup your MySQL tables to Amazon S3 for a nightly backup - this is all to be done on your server :-)
 
-***Sister Document - [Restore MySQL from Amazon S3](https://gist.github.com/2208520) - read that next***
+***Sister Document - [Restore MySQL from Amazon S3](https://gist.github.com/2209819) - read that next***
 
 ## 1 - Install s3cmd
 

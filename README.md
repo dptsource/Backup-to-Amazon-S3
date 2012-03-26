@@ -42,3 +42,8 @@ If for some reason you put this script in a public folder (not sure why you woul
         Order allow,deny
         Deny from all
     </Files>
+
+## How to restore...?
+
+It would be silly to do backups without planning the restore procedure!
+How to... [Restore MySQL from Amazon S3](https://gist.github.com/2208520)

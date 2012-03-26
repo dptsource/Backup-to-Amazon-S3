@@ -7,7 +7,7 @@ mysqlpass="ROOTPASSWORD"
 bucket="s3://bucketname"
 
 # Timestamp (sortable AND readable)
-stamp=`date +"%s - %A %d %B %Y %H%M"`
+stamp=`date +"%s - %A %d %B %Y @ %H%M"`
 
 # List all the databases
 databases=`mysql -u root -p$mysqlpass -e "SHOW DATABASES;" | tr -d "| " | grep -v "\(Database\|information_schema\|mysql\)"`
@@ -19,7 +19,7 @@ echo -e "Dumping to \e[1;32m$bucket/$stamp/\e[00m"
 for db in $databases; do
 
   # Define our filenames
-  filename="$stamp-$db.sql.gz"
+  filename="$stamp - $db.sql.gz"
   tmpfile="/tmp/$filename"
   object="$bucket/$stamp/$filename"
 

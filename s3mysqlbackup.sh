@@ -2,6 +2,15 @@
 
 # Based on https://gist.github.com/2206527
 
+# Be pretty
+echo -e " "
+echo -e " .  ____  .    ______________________________"
+echo -e " |/      \|   |                              |"
+echo -e "[| \e[1;31m♥    ♥\e[00m |]  | S3 MySQL Backup Script v.0.1 |"
+echo -e " |___==___|  /                © oodavid 2012 |"
+echo -e "              |______________________________|"
+echo -e " "
+
 # Basic variables
 mysqlpass="ROOTPASSWORD"
 bucket="s3://bucketname"
@@ -40,10 +49,4 @@ for db in $databases; do
 done;
 
 # Jobs a goodun
-echo -e " "
-echo -e " .  ____  .    ______________________________"
-echo -e " |/      \|   |                              |"
-echo -e "[| \e[1;31m♥    ♥\e[00m |]  | S3 MySQL Backup Script v.0.1 |"
-echo -e " |___==___|  /                © oodavid 2012 |"
-echo -e "              |______________________________|"
-echo -e " "
+echo -e "\e[1;32mJobs a goodun\e[00m"

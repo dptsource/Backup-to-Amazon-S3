@@ -19,7 +19,7 @@ bucket="s3://bucketname"
 stamp=`date +"%s - %A %d %B %Y @ %H%M"`
 
 # List all the databases
-databases=`mysql -u root -p$mysqlpass -e "SHOW DATABASES;" | tr -d "| " | grep -v "\(Database\|information_schema\|mysql\)"`
+databases=`mysql -u root -p$mysqlpass -e "SHOW DATABASES;" | tr -d "| " | grep -v "\(Database\|information_schema\|performance_schema\|mysql\|test\)"`
 
 # Feedback
 echo -e "Dumping to \e[1;32m$bucket/$stamp/\e[00m"
